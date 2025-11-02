@@ -66,13 +66,13 @@ const Header = () => {
           <div className="mobile-menu">
             <div className="mobile-nav">
               {['home', 'services', 'projects', 'testimonials', 'contact'].map((item) => (
-                <button
+                <h4
                   key={item}
                   onClick={() => handleNavigation(item)}
                   className="mobile-nav-link"
                 >
                   {item.charAt(0).toUpperCase() + item.slice(1)}
-                </button>
+                </h4>
               ))}
             </div>
           </div>
