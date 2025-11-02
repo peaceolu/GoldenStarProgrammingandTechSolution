@@ -23,9 +23,8 @@ const Footer = () => {
             </p>
             <div className="footer-social">
               {[
-                { name: 'WhatsApp', url: 'https://wa.me/234XXXXXXXXXX', icon: '💬' },
-                { name: 'Telegram', url: 'https://t.me/yourusername', icon: '✈️' },
-                { name: 'GitHub', url: 'https://github.com', icon: '🐙' },
+                { name: 'WhatsApp', url: 'https://wa.me/2349035043293', icon: '💬' },
+                              { name: 'GitHub', url: 'https://github.com', icon: '🐙' },
                 { name: 'LinkedIn', url: 'https://linkedin.com', icon: '💼' }
               ].map((social) => (
                 <a
