@@ -134,7 +134,9 @@ body {
   padding: 0.5rem 0;
   text-transform: capitalize;
   transition: color 0.3s ease;
-    background-color: black
+    background-color: black;
+    border: none;
+     border-bottom: 2px solid var(--gold);
 }
 
 .mobile-nav-link:hover {
@@ -401,10 +403,10 @@ body {
 
 .form-input {
   width: 100%;
-  padding: 0.75rem 1rem;
-  background-color: var(--gray-700);
+  padding: 10px;
+  background-color: black;
   border: 1px solid var(--gray-600);
-  border-radius: 0.5rem;
+  border-radius: 10px;
   color: var(--white);
   font-size: 1rem;
   transition: border-color 0.3s ease;
