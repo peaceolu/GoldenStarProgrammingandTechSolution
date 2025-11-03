@@ -1,29 +1,8 @@
 .projects-section {
   padding: 6rem 0;
-  background: linear-gradient(135deg, #ffffff 0%, #fefefe 50%, #fffaf0 100%);
+  background: linear-gradient(135deg, var(--black) 0%, #1a1a2e 50%, var(--black) 100%);
   position: relative;
   overflow: hidden;
-}
-
-/* Add gold accent borders */
-.projects-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--gold), #ffed4a, var(--gold));
-}
-
-.projects-section::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
 /* Floating Background Elements */
@@ -39,7 +18,7 @@
 .floating-shape {
   position: absolute;
   border-radius: 50%;
-  background: linear-gradient(45deg, var(--gold), rgba(255, 215, 0, 0.3));
+  background: linear-gradient(45deg, var(--gold), transparent);
   opacity: 0.1;
   animation: float 8s ease-in-out infinite;
 }
@@ -85,21 +64,11 @@
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s ease;
-  text-align: center;
 }
 
 .section-header.animate-in {
   opacity: 1;
   transform: translateY(0);
-}
-
-.section-title {
-  color: #1f2937; /* Dark gray for better contrast on white */
-  margin-bottom: 1rem;
-}
-
-.section-subtitle {
-  color: #6b7280; /* Medium gray */
 }
 
 /* Projects Grid */
@@ -136,9 +105,9 @@
 /* Card Styling */
 .card-inner {
   background: linear-gradient(145deg, 
-    #ffffff 0%, 
-    #fefefe 100%);
-  border: 1px solid #e5e7eb;
+    rgba(31, 41, 55, 0.9) 0%, 
+    rgba(17, 24, 39, 0.95) 100%);
+  border: 1px solid rgba(255, 215, 0, 0.1);
   border-radius: 20px;
   padding: 2.5rem;
   position: relative;
@@ -147,16 +116,15 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .project-card:hover .card-inner {
   transform: translateY(-10px) scale(1.02);
-  border-color: var(--gold);
+  border-color: rgba(255, 215, 0, 0.3);
   box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 215, 0, 0.2),
-    0 0 30px rgba(255, 215, 0, 0.1);
+    0 25px 50px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 215, 0, 0.1),
+    0 0 50px rgba(255, 215, 0, 0.1);
 }
 
 /* Card Glow Effect */
@@ -284,28 +252,28 @@
 .project-category {
   display: inline-block;
   background: rgba(255, 215, 0, 0.1);
-  color: #92400e; /* Dark amber for better contrast */
+  color: var(--gold);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  border: 1px solid rgba(255, 215, 0, 0.3);
+  border: 1px solid rgba(255, 215, 0, 0.2);
 }
 
 .project-name {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1f2937; /* Dark gray */
+  color: var(--white);
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #1f2937, var(--gold));
+  background: linear-gradient(135deg, var(--white), var(--gold));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .project-description {
-  color: #6b7280; /* Medium gray */
+  color: var(--gray-300);
   line-height: 1.6;
   margin-bottom: 1.5rem;
   flex-grow: 1;
@@ -320,15 +288,14 @@
 }
 
 .tech-tag {
-  background: rgba(255, 215, 0, 0.1);
-  color: #92400e; /* Dark amber */
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--gray-300);
   padding: 0.25rem 0.75rem;
   border-radius: 15px;
   font-size: 0.75rem;
-  border: 1px solid rgba(255, 215, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   opacity: 0;
   animation: tagEntrance 0.5s ease forwards;
-  font-weight: 500;
 }
 
 @keyframes tagEntrance {
@@ -408,7 +375,7 @@
 
 .see-more-btn {
   background: linear-gradient(135deg, var(--gold) 0%, #ffed4a 100%);
-  color: #1f2937; /* Dark text for contrast */
+  color: var(--black);
   border: none;
   padding: 1.2rem 2.5rem;
   border-radius: 50px;
@@ -422,13 +389,11 @@
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-  border: 1px solid rgba(255, 215, 0, 0.3);
 }
 
 .see-more-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
-  color: #000000; /* Even darker on hover */
 }
 
 .btn-arrow-wrapper {
@@ -451,31 +416,6 @@
 
 .see-more-btn:hover .btn-shine {
   left: 100%;
-}
-
-/* Add decorative gold elements */
-.projects-decoration {
-  position: absolute;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.decoration-1 {
-  top: 20%;
-  right: 5%;
-  width: 120px;
-  height: 120px;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
-  border-radius: 50%;
-}
-
-.decoration-2 {
-  bottom: 30%;
-  left: 3%;
-  width: 80px;
-  height: 80px;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
-  border-radius: 50%;
 }
 
 /* Responsive Design */
@@ -505,11 +445,6 @@
   .see-more-btn {
     padding: 1rem 2rem;
     font-size: 1rem;
-  }
-
-  .decoration-1,
-  .decoration-2 {
-    display: none;
   }
 }
 
@@ -547,17 +482,4 @@
   .project-card:hover .card-inner {
     transform: none;
   }
-}
-
-/* Ensure CSS variables are defined */
-:root {
-  --gold: #FFD700;
-  --black: #000000;
-  --white: #FFFFFF;
-  --gray-900: #111827;
-  --gray-800: #1f2937;
-  --gray-700: #374151;
-  --gray-600: #4b5563;
-  --gray-400: #9ca3af;
-  --gray-300: #d1d5db;
 }
