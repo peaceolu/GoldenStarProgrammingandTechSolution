@@ -13,7 +13,7 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
 
-  // Two WhatsApp numbers
+
   const whatsappNumbers = [
     '+2349035124607',
     
