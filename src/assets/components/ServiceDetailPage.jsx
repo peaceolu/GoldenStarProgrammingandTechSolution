@@ -5,6 +5,13 @@ const ServiceDetailPage = () => {
   const { serviceId } = useParams();
   const navigate = useNavigate();
   const [showOrderModal, setShowOrderModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [customerInfo, setCustomerInfo] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: ''
+  });
 
   const servicesData = {
     'mobile-app': {
@@ -227,6 +234,84 @@ const ServiceDetailPage = () => {
 
   const service = servicesData[serviceId];
 
+  // Paystack payment function
+  const handleProceedToPayment = async () => {
+    if (!customerInfo.name || !customerInfo.email) {
+      alert('Please fill in your name and email');
+      return;
+    }
+
+    setIsLoading(true);
+    
+    try {
+      const response = await fetch('http://localhost:3001/api/create-payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: customerInfo.email,
+          amount: parseInt(service.price.replace('$', '')),
+          serviceName: service.title
+        }),
+      });
+
+      const data = await response.json();
+      
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      // Open Paystack payment in new tab
+      const paymentWindow = window.open(data.authorizationUrl, '_blank');
+      
+      // Check when payment window closes
+      const checkWindow = setInterval(() => {
+        if (paymentWindow.closed) {
+          clearInterval(checkWindow);
+          // You can check payment status here
+          alert('Thank you for your order! We will contact you shortly.');
+          setShowOrderModal(false);
+          // Reset form
+          setCustomerInfo({
+            name: '',
+            email: '',
+            company: '',
+            message: ''
+          });
+        }
+      }, 1000);
+      
+    } catch (error) {
+      console.error('Payment initialization error:', error);
+      alert('Failed to initialize payment: ' + error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleCustomerInfoChange = (field, value) => {
+    setCustomerInfo(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleOrderNow = () => {
+    setShowOrderModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowOrderModal(false);
+    // Reset form when closing modal
+    setCustomerInfo({
+      name: '',
+      email: '',
+      company: '',
+      message: ''
+    });
+  };
+
   if (!service) {
     return (
       <div className="service-not-found">
@@ -239,21 +324,6 @@ const ServiceDetailPage = () => {
       </div>
     );
   }
-
-  const handleOrderNow = () => {
-    setShowOrderModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowOrderModal(false);
-  };
-
-  const handleSubmitOrder = (e) => {
-    e.preventDefault();
-    // Handle order submission logic here
-    alert(`Thank you for your order! We'll contact you soon about ${service.title}`);
-    setShowOrderModal(false);
-  };
 
   return (
     <section className="service-detail-page">
@@ -352,24 +422,43 @@ const ServiceDetailPage = () => {
                 <p><strong>{service.title}</strong> - {service.price}</p>
                 <p>{service.description}</p>
               </div>
-              <form onSubmit={handleSubmitOrder} className="order-form">
+              <div className="order-form">
                 <div className="form-group">
-                  <label htmlFor="name">Full Name</label>
-                  <input type="text" id="name" required />
+                  <label htmlFor="name">Full Name *</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    value={customerInfo.name}
+                    onChange={(e) => handleCustomerInfoChange('name', e.target.value)}
+                    required 
+                  />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="email">Email Address</label>
-                  <input type="email" id="email" required />
+                  <label htmlFor="email">Email Address *</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    value={customerInfo.email}
+                    onChange={(e) => handleCustomerInfoChange('email', e.target.value)}
+                    required 
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="company">Company (Optional)</label>
-                  <input type="text" id="company" />
+                  <input 
+                    type="text" 
+                    id="company" 
+                    value={customerInfo.company}
+                    onChange={(e) => handleCustomerInfoChange('company', e.target.value)}
+                  />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="message">Project Details</label>
+                  <label htmlFor="message">Project Details *</label>
                   <textarea 
                     id="message" 
                     rows="4" 
+                    value={customerInfo.message}
+                    onChange={(e) => handleCustomerInfoChange('message', e.target.value)}
                     placeholder="Tell us about your project requirements..."
                     required
                   ></textarea>
@@ -378,11 +467,16 @@ const ServiceDetailPage = () => {
                   <button type="button" onClick={handleCloseModal} className="btn-cancel">
                     Cancel
                   </button>
-                  <button type="submit" className="btn-confirm-order">
-                    Confirm Order - {service.price}
+                  <button 
+                    type="button" 
+                    onClick={handleProceedToPayment} 
+                    disabled={isLoading}
+                    className="btn-confirm-order"
+                  >
+                    {isLoading ? 'Processing...' : `Proceed to Payment - ${service.price}`}
                   </button>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
