@@ -15,7 +15,7 @@ const Contact = () => {
 
 
   const whatsappNumbers = [
-    '+2349035124607',
+    '+447387695524',
     
   ];
 
