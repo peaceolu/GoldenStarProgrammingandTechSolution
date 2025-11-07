@@ -16,13 +16,13 @@ const Contact = () => {
 
   // Your EmailJS credentials - REPLACE WITH YOUR ACTUAL KEYS!
   const EMAILJS_CONFIG = {
-    SERVICE_ID: 'service_qzqvsly', // From EmailJS dashboard
+    SERVICE_ID: 'service_crtiwpo', // From EmailJS dashboard
     TEMPLATE_ID: 'template_ea84y2d', // From EmailJS dashboard  
     PUBLIC_KEY: 'sggP_OsinNL1mxXUD' // From EmailJS dashboard
   };
 
   const whatsappNumbers = [
-    '+447387695524',
+    '447387695524',
   ];
 
   const services = [
