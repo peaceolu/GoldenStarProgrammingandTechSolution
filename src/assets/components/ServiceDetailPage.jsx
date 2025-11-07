@@ -19,7 +19,7 @@ const ServiceDetailPage = () => {
       title: "Mobile App Development",
       description: "We create stunning, high-performance mobile applications that deliver exceptional user experiences across iOS and Android platforms.",
       detailedDescription: "Our mobile app development service combines cutting-edge technology with user-centered design to create applications that not only look great but also perform flawlessly. We specialize in cross-platform development using React Native and Flutter, ensuring your app reaches the widest possible audience while maintaining native-like performance.",
-      price: "$499",
+      price: 499, // Changed from "$499" to 499
       image: "📱",
       features: [
         "Cross-platform Development (iOS & Android)",
@@ -55,7 +55,7 @@ const ServiceDetailPage = () => {
       title: "UI/UX Design",
       description: "Transform your digital presence with intuitive, beautiful designs that users love and that drive business results.",
       detailedDescription: "Our UI/UX design service focuses on creating digital experiences that are not only visually appealing but also highly functional and user-friendly. We conduct thorough user research, create detailed wireframes, and design interfaces that align with your brand while ensuring optimal user engagement and conversion rates.",
-      price: "$299",
+      price: 299, // Changed from "$299" to 299
       image: "🎨",
       features: [
         "User Research & Analysis",
@@ -86,190 +86,54 @@ const ServiceDetailPage = () => {
       timeline: "2-3 weeks",
       category: "Design"
     },
-    'shopify': {
-      id: 'shopify',
-      title: "Shopify Marketing",
-      description: "Maximize your Shopify store's potential with data-driven marketing strategies that boost sales and customer engagement.",
-      detailedDescription: "Our Shopify marketing service is designed to help e-commerce businesses thrive in the competitive online marketplace. We implement comprehensive marketing strategies including SEO optimization, paid advertising, social media marketing, and conversion rate optimization to drive targeted traffic and increase your store's revenue.",
-      price: "$350",
-      image: "🛍️",
-      features: [
-        "Shopify SEO Optimization",
-        "Google & Facebook Ads Management",
-        "Social Media Marketing",
-        "Email Marketing Campaigns",
-        "Conversion Rate Optimization",
-        "Sales Analytics & Reporting",
-        "Customer Retention Strategies",
-        "Abandoned Cart Recovery",
-        "Product Listing Optimization",
-        "Competitor Analysis"
-      ],
-      process: [
-        "Store Audit & Analysis",
-        "Strategy Development",
-        "Implementation",
-        "Monitoring & Optimization",
-        "Performance Reporting"
-      ],
-      deliverables: [
-        "Marketing Strategy Document",
-        "Monthly Performance Reports",
-        "Optimized Product Listings",
-        "Ad Campaign Structures",
-        "Analytics Dashboard"
-      ],
-      timeline: "Ongoing (Monthly)",
-      category: "Marketing"
-    },
-    'digital-marketing': {
-      id: 'digital-marketing',
-      title: "Digital Marketing",
-      description: "Comprehensive digital marketing solutions that drive growth, increase visibility, and generate qualified leads.",
-      detailedDescription: "Our digital marketing service provides end-to-end solutions to help your business succeed online. From content creation and social media management to paid advertising and analytics, we develop customized strategies that align with your business goals and deliver measurable results.",
-      price: "$400",
-      image: "📈",
-      features: [
-        "Content Strategy & Creation",
-        "Social Media Management",
-        "Search Engine Optimization (SEO)",
-        "Pay-Per-Click Advertising",
-        "Email Marketing Automation",
-        "Analytics & Performance Tracking",
-        "Conversion Optimization",
-        "Brand Awareness Campaigns",
-        "Lead Generation Strategies",
-        "ROI Analysis & Reporting"
-      ],
-      process: [
-        "Goal Setting & Research",
-        "Strategy Development",
-        "Content Creation",
-        "Campaign Execution",
-        "Analysis & Optimization"
-      ],
-      deliverables: [
-        "Comprehensive Marketing Plan",
-        "Monthly Performance Reports",
-        "Content Calendar",
-        "Analytics Dashboard Access",
-        "Optimization Recommendations"
-      ],
-      timeline: "Ongoing (Monthly)",
-      category: "Marketing"
-    },
-    'web-development': {
-      id: 'web-development',
-      title: "Web Development",
-      description: "Modern, responsive websites built with the latest technologies to ensure speed, security, and scalability.",
-      detailedDescription: "Our web development service creates powerful, responsive websites that provide exceptional user experiences across all devices. We use modern frameworks and best practices to ensure your website is fast, secure, and optimized for search engines while aligning perfectly with your business objectives.",
-      price: "$599",
-      image: "💻",
-      features: [
-        "Responsive Web Design",
-        "Custom WordPress Development",
-        "E-commerce Solutions",
-        "SEO Optimization",
-        "Fast Loading Speed",
-        "Security Implementation",
-        "Content Management System",
-        "Website Maintenance",
-        "Performance Monitoring",
-        "Technical Support"
-      ],
-      process: [
-        "Planning & Discovery",
-        "Design & Development",
-        "Testing & Quality Assurance",
-        "Deployment",
-        "Maintenance"
-      ],
-      deliverables: [
-        "Fully Functional Website",
-        "Source Code",
-        "Documentation",
-        "Training Materials",
-        "Support & Maintenance"
-      ],
-      timeline: "3-5 weeks",
-      category: "Development"
-    },
-    'branding': {
-      id: 'branding',
-      title: "Brand Design",
-      description: "Complete branding solutions that establish your unique identity and make your business memorable.",
-      detailedDescription: "Our brand design service helps businesses create a strong, cohesive identity that resonates with their target audience. From logo design to comprehensive brand guidelines, we ensure your brand tells a compelling story and stands out in the marketplace.",
-      price: "$450",
-      image: "✨",
-      features: [
-        "Logo Design & Variations",
-        "Brand Identity Development",
-        "Color Palette & Typography",
-        "Brand Guidelines Document",
-        "Marketing Materials Design",
-        "Social Media Kit",
-        "Brand Strategy Development",
-        "Voice & Tone Guidelines",
-        "Stationery Design",
-        "Brand Application Examples"
-      ],
-      process: [
-        "Brand Discovery",
-        "Concept Development",
-        "Design Creation",
-        "Refinement",
-        "Guidelines Development"
-      ],
-      deliverables: [
-        "Logo Package (All Formats)",
-        "Brand Guidelines PDF",
-        "Social Media Kit",
-        "Stationery Templates",
-        "Marketing Material Templates"
-      ],
-      timeline: "3-4 weeks",
-      category: "Design"
-    }
+    // ... keep your other services with price as number instead of string
   };
 
   const service = servicesData[serviceId];
 
   // Paystack payment function
   const handleProceedToPayment = async () => {
-    if (!customerInfo.name || !customerInfo.email) {
-      alert('Please fill in your name and email');
+    if (!customerInfo.name || !customerInfo.email || !customerInfo.message) {
+      alert('Please fill in all required fields: Name, Email, and Project Details');
       return;
     }
 
     setIsLoading(true);
     
     try {
-      const response = await fetch('http://localhost:3001/api/create-payment', {
+      // Call our Vercel serverless function
+      const response = await fetch('/api/create-payment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           email: customerInfo.email,
-          amount: parseInt(service.price.replace('$', '')),
-          serviceName: service.title
+          amount: service.price, // Now using the number directly
+          serviceName: service.title,
+          customerName: customerInfo.name,
+          projectDetails: customerInfo.message
         }),
       });
 
       const data = await response.json();
-      
-      if (data.error) {
+
+      if (!data.success) {
         throw new Error(data.error);
       }
 
       // Open Paystack payment in new tab
       const paymentWindow = window.open(data.authorizationUrl, '_blank');
       
+      if (!paymentWindow) {
+        alert('Popup blocked! Please allow popups for this site to complete payment.');
+        return;
+      }
+
       // Check when payment window closes
       const checkWindow = setInterval(() => {
         if (paymentWindow.closed) {
           clearInterval(checkWindow);
-          // You can check payment status here
           alert('Thank you for your order! We will contact you shortly.');
           setShowOrderModal(false);
           // Reset form
@@ -344,7 +208,7 @@ const ServiceDetailPage = () => {
               <h1 className="service-detail-title">{service.title}</h1>
               <p className="service-detail-description">{service.description}</p>
               <div className="service-price-timeline">
-                <span className="service-detail-price">{service.price}</span>
+                <span className="service-detail-price">${service.price}</span>
                 <span className="service-timeline">• {service.timeline}</span>
               </div>
               <button onClick={handleOrderNow} className="order-now-btn-large">
@@ -402,7 +266,7 @@ const ServiceDetailPage = () => {
             <h2>Ready to Get Started?</h2>
             <p>Let's bring your vision to life with our professional {service.title} service.</p>
             <button onClick={handleOrderNow} className="order-now-btn-bottom">
-              Order Now - {service.price}
+              Order Now - ${service.price}
             </button>
           </div>
         </div>
@@ -419,7 +283,7 @@ const ServiceDetailPage = () => {
             <div className="modal-content">
               <div className="order-summary">
                 <h4>Service Summary</h4>
-                <p><strong>{service.title}</strong> - {service.price}</p>
+                <p><strong>{service.title}</strong> - ${service.price}</p>
                 <p>{service.description}</p>
               </div>
               <div className="order-form">
@@ -473,7 +337,7 @@ const ServiceDetailPage = () => {
                     disabled={isLoading}
                     className="btn-confirm-order"
                   >
-                    {isLoading ? 'Processing...' : `Proceed to Payment - ${service.price}`}
+                    {isLoading ? 'Processing...' : `Proceed to Payment - $${service.price}`}
                   </button>
                 </div>
               </div>
