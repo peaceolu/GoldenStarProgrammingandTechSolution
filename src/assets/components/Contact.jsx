@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import './Contact.css';
 
 const Contact = () => {
@@ -13,10 +14,15 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
 
+  // Your EmailJS credentials - REPLACE WITH YOUR ACTUAL KEYS!
+  const EMAILJS_CONFIG = {
+    SERVICE_ID: 'service_qzqvsly', // From EmailJS dashboard
+    TEMPLATE_ID: 'template_ea84y2d', // From EmailJS dashboard  
+    PUBLIC_KEY: 'sggP_OsinNL1mxXUD' // From EmailJS dashboard
+  };
 
   const whatsappNumbers = [
     '+447387695524',
-    
   ];
 
   const services = [
@@ -52,37 +58,36 @@ const Contact = () => {
     setSubmitStatus('');
 
     try {
-      // Using Formspree as an example - you can replace with your preferred email service
-      const response = await fetch('https://formspree.io/f/your-form-id', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        {
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
-          service: formData.service,
-          budget: formData.budget,
+          phone: formData.phone || 'Not provided',
+          service: formData.service || 'Not specified',
+          budget: formData.budget || 'Not specified',
           message: formData.message,
-          submission_date: new Date().toLocaleDateString(),
-          submission_time: new Date().toLocaleTimeString()
-        }),
+          date: new Date().toLocaleDateString(),
+          time: new Date().toLocaleTimeString()
+        },
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+
+      console.log('Email sent successfully:', result);
+
+      // Success
+      setSubmitStatus('success');
+      setFormData({ 
+        name: '', 
+        email: '', 
+        phone: '', 
+        service: '', 
+        budget: '', 
+        message: '' 
       });
 
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ 
-          name: '', 
-          email: '', 
-          phone: '', 
-          service: '', 
-          budget: '', 
-          message: '' 
-        });
-      } else {
-        throw new Error('Form submission failed');
-      }
     } catch (error) {
       console.error('Email sending failed:', error);
       setSubmitStatus('error');
@@ -121,9 +126,9 @@ const Contact = () => {
             <h3 className="contact-methods-title">Quick Connect</h3>
             
             <div className="contact-links">
-              {/* First WhatsApp Number */}
+              {/* WhatsApp Number */}
               <a
-                href={`https://wa.me/${whatsappNumbers[0]}`}
+                href={`https://wa.me/${whatsappNumbers[0].replace('+', '')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-link whatsapp-link"
@@ -133,13 +138,10 @@ const Contact = () => {
                 </div>
                 <div className="contact-link-info">
                   <h4 className="contact-link-title">WhatsApp</h4>
-                  <p className="contact-link-desc">+{whatsappNumbers[0]}</p>
+                  <p className="contact-link-desc">{whatsappNumbers[0]}</p>
                   <p className="contact-link-sub">Primary contact</p>
                 </div>
               </a>
-
-              {/* Second WhatsApp Number */}
-              
 
               {/* Email Contact */}
               <a
@@ -308,10 +310,7 @@ const Contact = () => {
               >
                 {isSubmitting ? (
                   <>
-                    <svg className="spinner" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
+                    <div className="spinner"></div>
                     Sending...
                   </>
                 ) : (
