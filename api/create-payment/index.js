@@ -5,6 +5,9 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  console.log('Received payment request:', req.body);
+  console.log('Paystack Key exists:', !!process.env.PAYSTACK_SECRET_KEY);
+
   try {
     const { email, amount, serviceName, customerName, projectDetails } = req.body;
 
@@ -15,12 +18,22 @@ export default async function handler(req, res) {
       });
     }
 
-    // Convert dollar amount to naira (assuming $1 = ₦1500)
-    const exchangeRate = 1500; // Update this with current exchange rate
+    // Check if Paystack key is available
+    if (!process.env.PAYSTACK_SECRET_KEY) {
+      throw new Error('Paystack secret key is missing from environment variables');
+    }
+
+    // Convert dollar amount to naira
+    const exchangeRate = 1500;
     const amountInNaira = amount * exchangeRate;
-    
-    // Convert amount to kobo (Paystack uses smallest currency unit)
     const amountInKobo = amountInNaira * 100;
+
+    console.log('Sending to Paystack:', {
+      email,
+      originalAmount: amount,
+      nairaAmount: amountInNaira,
+      koboAmount: amountInKobo
+    });
 
     // Initialize Paystack payment
     const response = await fetch('https://api.paystack.co/transaction/initialize', {
@@ -32,36 +45,17 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         email: email,
         amount: amountInKobo,
-        currency: 'NGN', // Explicitly set currency to Naira
+        currency: 'NGN',
         metadata: {
           service_name: serviceName,
           customer_name: customerName,
-          project_details: projectDetails,
-          original_usd_amount: amount, // Store original dollar amount
-          exchange_rate: exchangeRate,
-          calculated_naira_amount: amountInNaira,
-          custom_fields: [
-            {
-              display_name: "Service",
-              variable_name: "service",
-              value: serviceName
-            },
-            {
-              display_name: "Customer Name", 
-              variable_name: "customer_name",
-              value: customerName
-            },
-            {
-              display_name: "Original USD Amount",
-              variable_name: "usd_amount",
-              value: `$${amount}`
-            }
-          ]
+          project_details: projectDetails
         }
       }),
     });
 
     const data = await response.json();
+    console.log('Paystack response:', data);
 
     if (!data.status) {
       throw new Error(data.message || 'Failed to initialize payment');
@@ -71,15 +65,15 @@ export default async function handler(req, res) {
     res.status(200).json({
       success: true,
       authorizationUrl: data.data.authorization_url,
-      reference: data.data.reference,
-      nairaAmount: amountInNaira // Optional: send back for display
+      reference: data.data.reference
     });
 
   } catch (error) {
-    console.error('Paystack error:', error);
+    console.error('❌ Paystack error:', error);
     res.status(500).json({ 
       success: false,
-      error: error.message || 'Payment initialization failed'
+      error: error.message || 'Payment initialization failed',
+      details: 'Check server logs for more information'
     });
   }
 }
