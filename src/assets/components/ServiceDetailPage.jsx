@@ -13,13 +13,15 @@ const ServiceDetailPage = () => {
     message: ''
   });
 
+  // Updated servicesData with naira prices
   const servicesData = {
     'mobile-app': {
       id: 'mobile-app',
       title: "Mobile App Development",
       description: "We create stunning, high-performance mobile applications that deliver exceptional user experiences across iOS and Android platforms.",
       detailedDescription: "Our mobile app development service combines cutting-edge technology with user-centered design to create applications that not only look great but also perform flawlessly. We specialize in cross-platform development using React Native and Flutter, ensuring your app reaches the widest possible audience while maintaining native-like performance.",
-      price: 499,
+      price: 499, // Dollar price
+      priceNaira: 748500, // 499 * 1500
       image: "📱",
       features: [
         "Cross-platform Development (iOS & Android)",
@@ -55,7 +57,8 @@ const ServiceDetailPage = () => {
       title: "UI/UX Design",
       description: "Transform your digital presence with intuitive, beautiful designs that users love and that drive business results.",
       detailedDescription: "Our UI/UX design service focuses on creating digital experiences that are not only visually appealing but also highly functional and user-friendly. We conduct thorough user research, create detailed wireframes, and design interfaces that align with your brand while ensuring optimal user engagement and conversion rates.",
-      price: 299,
+      price: 299, // Dollar price
+      priceNaira: 448500, // 299 * 1500
       image: "🎨",
       features: [
         "User Research & Analysis",
@@ -91,7 +94,8 @@ const ServiceDetailPage = () => {
       title: "Shopify Marketing",
       description: "Maximize your Shopify store's potential with data-driven marketing strategies that boost sales and customer engagement.",
       detailedDescription: "Our Shopify marketing service is designed to help e-commerce businesses thrive in the competitive online marketplace. We implement comprehensive marketing strategies including SEO optimization, paid advertising, social media marketing, and conversion rate optimization to drive targeted traffic and increase your store's revenue.",
-      price: 350,
+      price: 350, // Dollar price
+      priceNaira: 525000, // 350 * 1500
       image: "🛍️",
       features: [
         "Shopify SEO Optimization",
@@ -127,7 +131,8 @@ const ServiceDetailPage = () => {
       title: "Digital Marketing",
       description: "Comprehensive digital marketing solutions that drive growth, increase visibility, and generate qualified leads.",
       detailedDescription: "Our digital marketing service provides end-to-end solutions to help your business succeed online. From content creation and social media management to paid advertising and analytics, we develop customized strategies that align with your business goals and deliver measurable results.",
-      price: 400,
+      price: 400, // Dollar price
+      priceNaira: 600000, // 400 * 1500
       image: "📈",
       features: [
         "Content Strategy & Creation",
@@ -163,7 +168,8 @@ const ServiceDetailPage = () => {
       title: "Web Development",
       description: "Modern, responsive websites built with the latest technologies to ensure speed, security, and scalability.",
       detailedDescription: "Our web development service creates powerful, responsive websites that provide exceptional user experiences across all devices. We use modern frameworks and best practices to ensure your website is fast, secure, and optimized for search engines while aligning perfectly with your business objectives.",
-      price: 599,
+      price: 599, // Dollar price
+      priceNaira: 898500, // 599 * 1500
       image: "💻",
       features: [
         "Responsive Web Design",
@@ -199,7 +205,8 @@ const ServiceDetailPage = () => {
       title: "Brand Design",
       description: "Complete branding solutions that establish your unique identity and make your business memorable.",
       detailedDescription: "Our brand design service helps businesses create a strong, cohesive identity that resonates with their target audience. From logo design to comprehensive brand guidelines, we ensure your brand tells a compelling story and stands out in the marketplace.",
-      price: 450,
+      price: 450, // Dollar price
+      priceNaira: 675000, // 450 * 1500
       image: "✨",
       features: [
         "Logo Design & Variations",
@@ -234,7 +241,7 @@ const ServiceDetailPage = () => {
 
   const service = servicesData[serviceId];
 
-  // Paystack payment function - UPDATED FOR PRODUCTION
+  // CORRECTED Paystack payment function with dollar-to-naira conversion
   const handleProceedToPayment = async () => {
     if (!customerInfo.name || !customerInfo.email || !customerInfo.message) {
       alert('Please fill in all required fields: Name, Email, and Project Details');
@@ -244,7 +251,11 @@ const ServiceDetailPage = () => {
     setIsLoading(true);
     
     try {
-      // Use relative path for Vercel - this will work in production
+      // Convert dollar price to naira (assuming $1 = ₦1500)
+      const exchangeRate = 1500; // Update this with current rate
+      const amountInNaira = service.price * exchangeRate;
+      
+      // Call our Vercel serverless function
       const response = await fetch('/api/create-payment', {
         method: 'POST',
         headers: {
@@ -252,10 +263,11 @@ const ServiceDetailPage = () => {
         },
         body: JSON.stringify({
           email: customerInfo.email,
-          amount: service.price,
+          amount: amountInNaira, // Now sending NAIRA amount
           serviceName: service.title,
           customerName: customerInfo.name,
-          projectDetails: customerInfo.message
+          projectDetails: customerInfo.message,
+          currency: 'NGN' // Explicitly set currency
         }),
       });
 
@@ -355,8 +367,9 @@ const ServiceDetailPage = () => {
             <div className="service-hero-content">
               <h1 className="service-detail-title">{service.title}</h1>
               <p className="service-detail-description">{service.description}</p>
+              {/* UPDATED Price display with both dollar and naira */}
               <div className="service-price-timeline">
-                <span className="service-detail-price">${service.price}</span>
+                <span className="service-detail-price">${service.price} / ₦{service.priceNaira.toLocaleString()}</span>
                 <span className="service-timeline">• {service.timeline}</span>
               </div>
               <button onClick={handleOrderNow} className="order-now-btn-large">
@@ -431,7 +444,7 @@ const ServiceDetailPage = () => {
             <div className="modal-content">
               <div className="order-summary">
                 <h4>Service Summary</h4>
-                <p><strong>{service.title}</strong> - ${service.price}</p>
+                <p><strong>{service.title}</strong> - ${service.price} / ₦{service.priceNaira.toLocaleString()}</p>
                 <p>{service.description}</p>
               </div>
               <div className="order-form">
