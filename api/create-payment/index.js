@@ -15,8 +15,12 @@ export default async function handler(req, res) {
       });
     }
 
+    // Convert dollar amount to naira (assuming $1 = ₦1500)
+    const exchangeRate = 1500; // Update this with current exchange rate
+    const amountInNaira = amount * exchangeRate;
+    
     // Convert amount to kobo (Paystack uses smallest currency unit)
-    const amountInKobo = amount * 100;
+    const amountInKobo = amountInNaira * 100;
 
     // Initialize Paystack payment
     const response = await fetch('https://api.paystack.co/transaction/initialize', {
@@ -28,10 +32,14 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         email: email,
         amount: amountInKobo,
+        currency: 'NGN', // Explicitly set currency to Naira
         metadata: {
           service_name: serviceName,
           customer_name: customerName,
           project_details: projectDetails,
+          original_usd_amount: amount, // Store original dollar amount
+          exchange_rate: exchangeRate,
+          calculated_naira_amount: amountInNaira,
           custom_fields: [
             {
               display_name: "Service",
@@ -42,6 +50,11 @@ export default async function handler(req, res) {
               display_name: "Customer Name", 
               variable_name: "customer_name",
               value: customerName
+            },
+            {
+              display_name: "Original USD Amount",
+              variable_name: "usd_amount",
+              value: `$${amount}`
             }
           ]
         }
@@ -58,7 +71,8 @@ export default async function handler(req, res) {
     res.status(200).json({
       success: true,
       authorizationUrl: data.data.authorization_url,
-      reference: data.data.reference
+      reference: data.data.reference,
+      nairaAmount: amountInNaira // Optional: send back for display
     });
 
   } catch (error) {
