@@ -55,7 +55,7 @@ const ServiceDetailPage = () => {
       title: "UI/UX Design",
       description: "Transform your digital presence with intuitive, beautiful designs that users love and that drive business results.",
       detailedDescription: "Our UI/UX design service focuses on creating digital experiences that are not only visually appealing but also highly functional and user-friendly. We conduct thorough user research, create detailed wireframes, and design interfaces that align with your brand while ensuring optimal user engagement and conversion rates.",
-      price: 299,
+      price: 99,
       image: "🎨",
       features: [
         "User Research & Analysis",
@@ -499,3 +499,4 @@ const ServiceDetailPage = () => {
 
 
 export default ServiceDetailPage;
+
