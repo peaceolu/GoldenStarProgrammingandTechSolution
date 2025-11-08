@@ -22,7 +22,7 @@ const Contact = () => {
   };
 
   const whatsappNumbers = [
-    '447387695524',
+    '+44 7387695524',
   ];
 
   const services = [
@@ -139,7 +139,7 @@ const Contact = () => {
                 <div className="contact-link-info">
                   <h4 className="contact-link-title">WhatsApp</h4>
                   <p className="contact-link-desc">{whatsappNumbers[0]}</p>
-                  <p className="contact-link-sub">Primary contact</p>
+                  <p className="contact-link-sub">Contact us</p>
                 </div>
               </a>
 
@@ -153,7 +153,7 @@ const Contact = () => {
                 </div>
                 <div className="contact-link-info">
                   <h4 className="contact-link-title">Email Us</h4>
-                  <p className="contact-link-desc">goldenstartech@gmail.com</p>
+                  <p className="contact-link-desc">goldenstar@goldenstarprogrammingandtechsolution.com</p>
                   <p className="contact-link-sub">Direct email</p>
                 </div>
               </a>
@@ -333,5 +333,6 @@ const Contact = () => {
     </section>
   );
 };
+
 
 export default Contact;
