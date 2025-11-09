@@ -4,13 +4,15 @@
   --gold: #FFD700;
   --black: #000000;
   --white: #FFFFFF;
-  --gray-800: #1f2937;
-  --gray-700: #374151;
-  --gray-600: #4b5563;
-  --gray-400: #9ca3af;
-  --gray-300: #d1d5db;
-   --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  /* switched dark grays to light backgrounds */
+  --gray-900: #FFFFFF;
+  --gray-800: #F8FAFC;
+  --gray-700: #F3F4F6;
+  --gray-600: #E5E7EB;
+  --gray-400: #6b7280;
+  --gray-300: #D1D5DB;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
 }
 
 * {
