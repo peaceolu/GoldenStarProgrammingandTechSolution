@@ -244,7 +244,7 @@ body {
 }
 
 .section-subtitle {
-  color: var(--gray-400);
+  color: var(--black);
   text-align: center;
   margin-bottom: 3rem;
   max-width: 42rem;
@@ -259,7 +259,7 @@ body {
 }
 
 .service-card {
-  background-color: var(--gray-800);
+  background-color: var(--gray-300);
   border-radius: 0.5rem;
   padding: 1.5rem;
   border: 1px solid var(--gray-700);
@@ -275,11 +275,11 @@ body {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  color: var(--white);
+  color: var(--black);
 }
 
 .service-description {
-  color: var(--gray-400);
+  color: var(--black);
   margin-bottom: 1rem;
   font-size: 0.875rem;
 }
@@ -299,7 +299,7 @@ body {
 .service-feature {
   display: flex;
   align-items: center;
-  color: var(--gray-300);
+  color: var(--black);
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
 }
