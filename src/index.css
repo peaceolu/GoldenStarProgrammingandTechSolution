@@ -261,7 +261,7 @@ body {
 }
 
 .service-card {
-  background-color: var(--gray-800);
+  background-color: white;
   border-radius: 0.5rem;
   padding: 1.5rem;
   border: 1px solid var(--gray-700);
@@ -277,11 +277,11 @@ body {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  color: var(--white);
+  color: var(--black);
 }
 
 .service-description {
-  color: var(--gray-400);
+  color: var(--black);
   margin-bottom: 1rem;
   font-size: 0.875rem;
 }
@@ -301,7 +301,7 @@ body {
 .service-feature {
   display: flex;
   align-items: center;
-  color: var(--gray-300);
+  color: black;
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
 }
@@ -354,7 +354,7 @@ body {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(247, 243, 243, 0.986);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -363,7 +363,7 @@ body {
 }
 
 .modal-content {
-  background-color: var(--gray-800);
+  background-color: white;
   border-radius: 0.5rem;
   padding: 1.5rem;
   max-width: 28rem;
