@@ -34,39 +34,41 @@ const Hero = () => {
   useEffect(() => {
     if (!isVisible) return;
 
-    // Smooth animation using requestAnimationFrame
-    const animateValue = (start, end, duration, updateCallback, onComplete) => {
-      const startTime = performance.now();
-      
-      const updateValue = (currentTime) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        
-        // Easing function for smooth animation
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        const currentValue = Math.floor(start + (end - start) * easeOutQuart);
-        
-        updateCallback(currentValue);
-        
-        if (progress < 1) {
-          requestAnimationFrame(updateValue);
-        } else {
-          updateCallback(end);
-          if (onComplete) onComplete();
-        }
-      };
-      
-      requestAnimationFrame(updateValue);
-    };
+    // Projects counter animation
+    const projectsDuration = 2000; // 2 seconds
+    const projectsStep = targetProjects / (projectsDuration / 16); // 60fps
+    
+    let projectsCurrent = 0;
+    const projectsTimer = setInterval(() => {
+      projectsCurrent += projectsStep;
+      if (projectsCurrent >= targetProjects) {
+        setProjectsCompleted(targetProjects);
+        clearInterval(projectsTimer);
+      } else {
+        setProjectsCompleted(Math.floor(projectsCurrent));
+      }
+    }, 16);
 
-    // Animate projects counter
-    animateValue(0, targetProjects, 2000, setProjectsCompleted);
-
-    // Animate satisfaction counter with delay
+    // Satisfaction counter animation (starts after a small delay)
     setTimeout(() => {
-      animateValue(0, targetSatisfaction, 1500, setClientSatisfaction);
-    }, 500);
+      const satisfactionDuration = 1500; // 1.5 seconds
+      const satisfactionStep = targetSatisfaction / (satisfactionDuration / 16);
+      
+      let satisfactionCurrent = 0;
+      const satisfactionTimer = setInterval(() => {
+        satisfactionCurrent += satisfactionStep;
+        if (satisfactionCurrent >= targetSatisfaction) {
+          setClientSatisfaction(targetSatisfaction);
+          clearInterval(satisfactionTimer);
+        } else {
+          setClientSatisfaction(Math.floor(satisfactionCurrent));
+        }
+      }, 16);
+    }, 300);
 
+    return () => {
+      clearInterval(projectsTimer);
+    };
   }, [isVisible]);
 
   return (
@@ -107,15 +109,15 @@ const Hero = () => {
               </a>
             </div>
 
-            <div className={`hero-stats ${isVisible ? 'animate-in' : ''}`} ref={statsRef}>
+            <div className="hero-stats" ref={statsRef}>
               <div className="stat">
-                <span className={`stat-number ${projectsCompleted === targetProjects ? 'reached-target' : ''}`}>
+                <span className="stat-number">
                   {projectsCompleted}+
                 </span>
                 <span className="stat-label">Projects Completed</span>
               </div>
               <div className="stat">
-                <span className={`stat-number ${clientSatisfaction === targetSatisfaction ? 'reached-target' : ''}`}>
+                <span className="stat-number">
                   {clientSatisfaction}%
                 </span>
                 <span className="stat-label">Client Satisfaction</span>
@@ -127,7 +129,6 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Rest of your hero visual content remains the same */}
           <div className="hero-visual">
             <div className="image-container">
               <img 
@@ -137,10 +138,12 @@ const Hero = () => {
               />
               <div className="image-glow"></div>
               
+              {/* Floating tech elements */}
               <div className="floating-tech tech-1">💻</div>
               <div className="floating-tech tech-2">📱</div>
               <div className="floating-tech tech-3">🎨</div>
               
+              {/* Status badge */}
               <div className="status-badge">
                 <div className="status-dot"></div>
                 <span>Available for Projects</span>
