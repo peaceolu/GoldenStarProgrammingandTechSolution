@@ -259,10 +259,10 @@ body {
 }
 
 .service-card {
-  background-color: var(--white);
+  background-color: white;
   border-radius: 0.5rem;
   padding: 1.5rem;
-  border: 1px solid var(--gray-700);
+  border: 1px solid gold;
   transition: all 0.3s ease;
 }
 
