@@ -34,8 +34,9 @@ function App() {
           } />
           <Route path="/services" element={<AllServicesPage />} />
           <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
-       <Route path="/team" element={<TeamPage />} />
+      
 <Route path="/testimonials" element={<TestimonialsPage />} />
+ <Route path="/team" element={<TeamPage />} />
         </Routes>
         <Footer />
       </div>
