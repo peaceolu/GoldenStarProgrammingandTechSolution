@@ -263,7 +263,7 @@
 .project-name {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--white);
+  color: var(--black);
   margin-bottom: 1rem;
   background: linear-gradient(135deg, var(--white), var(--gold));
   -webkit-background-clip: text;
@@ -272,7 +272,7 @@
 }
 
 .project-description {
-  color: var(--white);
+  color: var(--black);
   line-height: 1.6;
   margin-bottom: 1.5rem;
   flex-grow: 1;
@@ -288,7 +288,7 @@
 
 .tech-tag {
   background: rgba(255, 255, 255, 0.1);
-  color: var(--gray-300);
+  color: var(--black);
   padding: 0.25rem 0.75rem;
   border-radius: 15px;
   font-size: 0.75rem;
