@@ -12,12 +12,13 @@ import AllServicesPage from './assets/components/AllServicesPage';
 import ServiceDetailPage from './assets/components/ServiceDetailPage';
 import "./index.css";
 import TestimonialsPage from './assets/components/TestimonialsPage';
-
+import TeamPage from './assets/components/TeamPage';
 
 
 function App() {
   return (
     <Router>
+    
       <div className="app">
         <Header />
         <Routes>
@@ -33,7 +34,7 @@ function App() {
           } />
           <Route path="/services" element={<AllServicesPage />} />
           <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
-      
+       <Route path="/team" element={<TeamPage />} />
 <Route path="/testimonials" element={<TestimonialsPage />} />
         </Routes>
         <Footer />

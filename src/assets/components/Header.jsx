@@ -7,6 +7,13 @@ const Header = () => {
   const location = useLocation();
 
   const handleNavigation = (sectionId) => {
+    if (sectionId === 'about') {
+      // Navigate to TeamShowcase page
+      navigate('/team');
+      setIsMenuOpen(false);
+      return;
+    }
+
     if (location.pathname !== '/') {
       // If not on homepage, navigate to homepage first
       navigate('/');
@@ -41,7 +48,7 @@ const Header = () => {
           </div>
 
           <nav className="nav-desktop">
-            {['home', 'services', 'projects', 'testimonials', 'contact'].map((item) => (
+            {['home', 'about', 'services', 'projects', 'testimonials', 'contact'].map((item) => (
               <h3
                 key={item}
                 onClick={() => handleNavigation(item)}
@@ -65,7 +72,7 @@ const Header = () => {
         {isMenuOpen && (
           <div className="mobile-menu">
             <div className="mobile-nav">
-              {['home', 'services', 'projects', 'testimonials', 'contact'].map((item) => (
+              {['home', 'about', 'services', 'projects', 'testimonials', 'contact'].map((item) => (
                 <h4
                   key={item}
                   onClick={() => handleNavigation(item)}
