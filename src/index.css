@@ -1449,6 +1449,7 @@ a{
   flex-shrink: 0;
   background: linear-gradient(135deg, var(--gold), #ffed4a);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
