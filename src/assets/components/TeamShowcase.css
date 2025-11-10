@@ -1,6 +1,6 @@
 /* TeamShowcase.css */
 .team-showcase {
-  padding: 80px 0;
+  padding: 20px 0;
   background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
   min-height: 100vh;
 }
@@ -41,7 +41,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .filter-btn {
