@@ -63,7 +63,7 @@ const Projects = () => {
 
   return (
     <section id="projects" className="projects-section" ref={sectionRef}>
-      <div className=''>
+      <div className="container">
         {/* Animated Background Elements */}
         <div className="floating-background">
           <div className="floating-shape shape-1"></div>
