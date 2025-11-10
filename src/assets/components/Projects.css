@@ -104,9 +104,7 @@
 
 /* Card Styling */
 .card-inner {
-  background: linear-gradient(145deg, 
-    rgba(167, 164, 5, 0.945) 0%, 
-    rgba(153, 118, 3, 0.95) 100%);
+  background: white;
   border: 1px solid rgba(238, 203, 8, 0.1);
   border-radius: 20px;
   padding: 2.5rem;
@@ -134,7 +132,8 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  background: linear-gradient(90deg, transparent, var(--gold), 
+  transparent);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
