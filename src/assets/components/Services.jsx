@@ -57,7 +57,7 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="section bg-gray-900">
+    <section id="services" className="section ">
       <div className="container">
         <h2 className="section-title">Our Services</h2>
         <p className="section-subtitle">
@@ -110,7 +110,8 @@ const Services = () => {
               <h3 className="modal-title">Complete Your Purchase</h3>
               <div className="modal-service-info">
                 <p className="modal-service-name">{selectedService.title}</p>
-                <p className="modal-service-description">{selectedService.description}</p>
+                <p className="modal-service-description">
+                  {selectedService.description}</p>
                 <p className="modal-service-price">{selectedService.price}</p>
               </div>
               
