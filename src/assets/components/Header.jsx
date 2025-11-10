@@ -7,13 +7,6 @@ const Header = () => {
   const location = useLocation();
 
   const handleNavigation = (sectionId) => {
-    if (sectionId === 'about') {
-      // Navigate to TeamShowcase page
-      navigate('/team');
-      setIsMenuOpen(false);
-      return;
-    }
-
     if (location.pathname !== '/') {
       // If not on homepage, navigate to homepage first
       navigate('/');
