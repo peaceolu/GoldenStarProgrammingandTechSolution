@@ -283,6 +283,7 @@ body {
   color: var(--black);
   margin-bottom: 1rem;
   font-size: 0.875rem;
+
 }
 
 .service-price {
@@ -471,10 +472,10 @@ body {
 }
 
 .project-card {
-  background-color: var(--gray-900);
+  background-color: white;
   border-radius: 0.5rem;
   overflow: hidden;
-  border: 1px solid var(--gray-800);
+  border: 1px solid gold;
   transition: all 0.3s ease;
 }
 
@@ -507,7 +508,7 @@ body {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  color: var(--white);
+  color: var(--black);
   transition: color 0.3s ease;
 }
 
@@ -516,7 +517,7 @@ body {
 }
 
 .project-description {
-  color: var(--gray-400);
+  color: var(--white);
   line-height: 1.625;
 }
 
