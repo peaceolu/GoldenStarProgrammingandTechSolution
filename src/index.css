@@ -259,7 +259,7 @@ body {
 }
 
 .service-card {
-  background-color: var(--gray-300);
+  background-color: var(--white);
   border-radius: 0.5rem;
   padding: 1.5rem;
   border: 1px solid var(--gray-700);
