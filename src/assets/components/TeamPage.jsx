@@ -6,7 +6,7 @@ import Header from '../components/Header';
 const TeamPage = () => {
   return (
     <div className="team-page">
-      <Header />
+     
       <main>
         <TeamShowcase />
       </main>
