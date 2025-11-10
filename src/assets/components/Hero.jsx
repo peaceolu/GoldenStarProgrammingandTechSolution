@@ -1,93 +1,67 @@
-import React from 'react';
+import React from "react";
+import { FaUsers, FaCog, FaChartLine } from "react-icons/fa";
+import "./Hero.css";
 
 const Hero = () => {
   return (
-    <section id="home" className="hero">
+    <section id="home" className="hero-section">
       {/* Navigation */}
       <nav className="navbar">
-        <div className="nav-container">
-          <div className="nav-logo">
-            <span>YourLogo</span>
-          </div>
-          
-          <div className="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#service">Service</a>
-            <a href="#testimonial">Testimonial</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#careers">Careers</a>
-          </div>
-          
-          <a href="mailto:raphaelpeace2002@gmail.com" className="nav-cta">
-            Contact Us
-          </a>
-        </div>
+        <div className="logo">TechWorld</div>
+        <ul className="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#service">Service</a></li>
+          <li><a href="#testimonial">Testimonial</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#careers">Careers</a></li>
+        </ul>
+        <a href="#contact" className="contact-btn">Contact Us</a>
       </nav>
 
       {/* Hero Content */}
-      <div className="container">
-        <div className="hero-content-wrapper">
-          {/* Left Content */}
-          <div className="hero-left">
-            <h1 className="hero-title">
-              Fuel Your Growth With Bold Marketing
-            </h1>
-            
-            <p className="hero-subtitle">
-              Unlock performance with data-driven campaigns, creative storytelling, and impactful branding
-            </p>
-            
-            <a
-              href="#get-started"
-              className="cta-button"
-            >
-              Get Started Free
-            </a>
+      <div className="hero-container">
+        {/* Left Section */}
+        <div className="hero-text">
+          <h1>
+            Fuel Your Growth <br />
+            With <span className="gold-text">Bold Marketing</span>
+          </h1>
+          <p>
+            Unlock performance with data-driven campaigns, creative storytelling,
+            and impactful branding.
+          </p>
+          <a href="#start" className="cta-btn">Get Started Free</a>
+        </div>
+
+        {/* Right Section */}
+        <div className="hero-visuals">
+          <div className="card image-card">
+            <img
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+              alt="Working desk"
+            />
           </div>
 
-          {/* Right Content - Cards Collage */}
-          <div className="hero-right">
-            {/* Main Desk Photo Card */}
-            <div className="card desk-card">
-              <div className="card-image">
-                <div className="blurred-face"></div>
-                <div className="desk-setup"></div>
-              </div>
-            </div>
+          <div className="card small-card">
+            <FaCog className="icon" />
+            <h3>Decided Quality</h3>
+          </div>
 
-            {/* Statistic Card */}
-            <div className="card stat-card">
-              <div className="stat-number">99%</div>
-              <div className="stat-text">Track and analyze business reports</div>
-            </div>
+          <div className="card small-card">
+            <FaChartLine className="icon" />
+            <h3 className="gold-number">99%</h3>
+            <p>Track and analyze business reports</p>
+          </div>
 
-            {/* Icon Card */}
-            <div className="card icon-card">
-              <div className="icon-wrapper">
-                <div className="gold-icon">★</div>
-              </div>
-              <div className="icon-text">Decided Quality</div>
-            </div>
-
-            {/* Users Card */}
-            <div className="card users-card">
-              <div className="avatar-group">
-                <div className="avatar"></div>
-                <div className="avatar"></div>
-                <div className="avatar"></div>
-                <div className="avatar">+5</div>
-              </div>
-              <div className="users-text">1.8M Total Users</div>
+          <div className="card user-card">
+            <FaUsers className="icon" />
+            <div>
+              <h3>1.8M</h3>
+              <p>Total Users</p>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Background Elements */}
-      <div className="hero-background">
-        <div className="circle-1"></div>
-        <div className="circle-2"></div>
       </div>
     </section>
   );
