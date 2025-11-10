@@ -21,8 +21,8 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: var(--white);
-  color: var(--black);
+  background-color: var(--black);
+  color: var(--white);
   line-height: 1.6;
 }
 
@@ -42,7 +42,7 @@ body {
 }
 
 .bg-gray-900 {
-  background-color: #f5f6f8;
+  background-color: #111827;
 }
 
 .bg-gray-800 {
@@ -51,7 +51,7 @@ body {
 
 /* Header Styles */
 .header {
-  background-color: var(--white);
+  background-color: var(--black);
   border-bottom: 1px solid var(--gold);
   position: sticky;
   top: 0;
@@ -108,7 +108,7 @@ body {
 }
 
 .mobile-menu-btn {
-  background: white;
+  background: black;
   border: none;
   color: var(--gold);
   cursor: pointer;
@@ -118,23 +118,23 @@ body {
 .mobile-menu {
   padding-bottom: 1rem;
   
-  background-color: white;
+  background-color: black;
 }
 
 .mobile-nav {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background-color: white
+  background-color: black
 }
 
 .mobile-nav-link {
-  color: var(--black);
+  color: var(--white);
   text-decoration: none;
   padding: 0.5rem 0;
   text-transform: capitalize;
   transition: color 0.3s ease;
-    background-color: white;
+    background-color: black;
     border: none;
      border-bottom: 2px solid var(--gold);
 }
@@ -244,7 +244,7 @@ body {
 }
 
 .section-subtitle {
-  color: var(--black);
+  color: var(--gray-400);
   text-align: center;
   margin-bottom: 3rem;
   max-width: 42rem;
@@ -256,14 +256,13 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  background-color: white;
 }
 
 .service-card {
-  background-color: white;
+  background-color: var(--gray-800);
   border-radius: 0.5rem;
   padding: 1.5rem;
-  border: 1px solid gold;
+  border: 1px solid var(--gray-700);
   transition: all 0.3s ease;
 }
 
@@ -276,14 +275,13 @@ body {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  color: var(--black);
+  color: var(--white);
 }
 
 .service-description {
-  color: var(--black);
+  color: var(--gray-400);
   margin-bottom: 1rem;
   font-size: 0.875rem;
-
 }
 
 .service-price {
@@ -301,7 +299,7 @@ body {
 .service-feature {
   display: flex;
   align-items: center;
-  color: var(--black);
+  color: var(--gray-300);
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
 }
@@ -354,7 +352,7 @@ body {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -363,7 +361,7 @@ body {
 }
 
 .modal-content {
-  background-color: white;
+  background-color: var(--gray-800);
   border-radius: 0.5rem;
   padding: 1.5rem;
   max-width: 28rem;
@@ -388,7 +386,7 @@ body {
 }
 
 .modal-service-description {
-  color: white;
+  color: var(--gray-400);
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
 }
@@ -407,10 +405,10 @@ body {
 .form-input {
   width: 100%;
   padding: 10px;
-  background-color: white;
+  background-color: black;
   border: 1px solid var black;
   border-radius: 10px;
-  color: var(--black);
+  color: var(--white);
   font-size: 1rem;
   transition: border-color 0.3s ease;
 }
@@ -472,10 +470,10 @@ body {
 }
 
 .project-card {
-  background-color: white;
+  background-color: var(--gray-900);
   border-radius: 0.5rem;
   overflow: hidden;
-  border: 1px solid gold;
+  border: 1px solid var(--gray-800);
   transition: all 0.3s ease;
 }
 
@@ -508,7 +506,7 @@ body {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  color: var(--black);
+  color: var(--white);
   transition: color 0.3s ease;
 }
 
@@ -517,7 +515,7 @@ body {
 }
 
 .project-description {
-  color: var(--white);
+  color: var(--gray-400);
   line-height: 1.625;
 }
 
@@ -833,9 +831,9 @@ body {
 }
 
 .back-btn {
-  background: rgba(248, 248, 247, 0.952);
+  background: rgba(255, 215, 0, 0.1);
   color: var(--gold);
-  border: 1px solid rgba(194, 193, 191, 0.973);
+  border: 1px solid rgba(255, 215, 0, 0.3);
   padding: 0.75rem 1.5rem;
   border-radius: 25px;
   cursor: pointer;
@@ -847,7 +845,7 @@ body {
 }
 
 .back-btn:hover {
-  background: rgba(247, 246, 245, 0.959);
+  background: rgba(255, 215, 0, 0.2);
   transform: translateX(-5px);
 }
 
@@ -877,7 +875,7 @@ body {
 }
 
 .service-card-expanded {
-  background: white;
+  background: linear-gradient(145deg, rgba(31, 41, 55, 0.9), rgba(17, 24, 39, 0.9));
   border: 1px solid rgba(255, 215, 0, 0.1);
   border-radius: 20px;
   padding: 2rem;
@@ -888,7 +886,7 @@ body {
 
 .service-card-expanded:hover {
   transform: translateY(-5px);
-  border-color: rgba(247, 245, 238, 0.897);
+  border-color: rgba(255, 215, 0, 0.3);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
@@ -922,7 +920,7 @@ body {
 }
 
 .service-description-large {
-  color: var(--black);
+  color: var(--gray-400);
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
@@ -935,7 +933,7 @@ body {
 }
 
 .feature-tag {
-  background: rgba(247, 246, 243, 0.993);
+  background: rgba(255, 215, 0, 0.1);
   color: var(--gold);
   padding: 0.25rem 0.75rem;
   border-radius: 15px;
@@ -944,8 +942,8 @@ body {
 }
 
 .feature-tag-more {
-  background: rgba(248, 246, 246, 0.973);
-  color: var(--black);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--gray-400);
   padding: 0.25rem 0.75rem;
   border-radius: 15px;
   font-size: 0.8rem;
@@ -958,7 +956,7 @@ body {
 }
 
 .service-category {
-  background: rgba(248, 248, 246, 0.959);
+  background: rgba(255, 215, 0, 0.1);
   color: var(--gold);
   padding: 0.25rem 0.75rem;
   border-radius: 15px;
