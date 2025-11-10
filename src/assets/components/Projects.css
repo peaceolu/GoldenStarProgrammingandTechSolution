@@ -1,6 +1,6 @@
 .projects-section {
   padding: 6rem 0;
-  background: linear-gradient(135deg, var(--black) 0%, #1a1a2e 50%, var(--black) 100%);
+  background: linear-gradient(135deg, var(white) 0%, #c9c9f0 50%, var(--white) 100%);
   position: relative;
   overflow: hidden;
 }
@@ -105,9 +105,9 @@
 /* Card Styling */
 .card-inner {
   background: linear-gradient(145deg, 
-    rgba(31, 41, 55, 0.9) 0%, 
-    rgba(17, 24, 39, 0.95) 100%);
-  border: 1px solid rgba(255, 215, 0, 0.1);
+    rgba(167, 164, 5, 0.945) 0%, 
+    rgba(153, 118, 3, 0.95) 100%);
+  border: 1px solid rgba(238, 203, 8, 0.1);
   border-radius: 20px;
   padding: 2.5rem;
   position: relative;
@@ -251,14 +251,14 @@
 /* Project Content */
 .project-category {
   display: inline-block;
-  background: rgba(255, 215, 0, 0.1);
+  background: wheat;
   color: var(--gold);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  border: 1px solid rgba(255, 215, 0, 0.2);
+  border: 1px solid rgba(177, 152, 12, 0.808);
 }
 
 .project-name {
@@ -273,7 +273,7 @@
 }
 
 .project-description {
-  color: var(--gray-300);
+  color: var(--white);
   line-height: 1.6;
   margin-bottom: 1.5rem;
   flex-grow: 1;
