@@ -1,76 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import './Hero.css';
 
 const Hero = () => {
-  const [projectsCompleted, setProjectsCompleted] = useState(0);
-  const [clientSatisfaction, setClientSatisfaction] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-  const statsRef = useRef(null);
-
-  const targetProjects = 50;
-  const targetSatisfaction = 98;
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (statsRef.current) {
-      observer.observe(statsRef.current);
-    }
-
-    return () => {
-      if (statsRef.current) {
-        observer.unobserve(statsRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!isVisible) return;
-
-    // Projects counter animation
-    const projectsDuration = 2000; // 2 seconds
-    const projectsStep = targetProjects / (projectsDuration / 16); // 60fps
-    
-    let projectsCurrent = 0;
-    const projectsTimer = setInterval(() => {
-      projectsCurrent += projectsStep;
-      if (projectsCurrent >= targetProjects) {
-        setProjectsCompleted(targetProjects);
-        clearInterval(projectsTimer);
-      } else {
-        setProjectsCompleted(Math.floor(projectsCurrent));
-      }
-    }, 16);
-
-    // Satisfaction counter animation (starts after a small delay)
-    setTimeout(() => {
-      const satisfactionDuration = 1500; // 1.5 seconds
-      const satisfactionStep = targetSatisfaction / (satisfactionDuration / 16);
-      
-      let satisfactionCurrent = 0;
-      const satisfactionTimer = setInterval(() => {
-        satisfactionCurrent += satisfactionStep;
-        if (satisfactionCurrent >= targetSatisfaction) {
-          setClientSatisfaction(targetSatisfaction);
-          clearInterval(satisfactionTimer);
-        } else {
-          setClientSatisfaction(Math.floor(satisfactionCurrent));
-        }
-      }, 16);
-    }, 300);
-
-    return () => {
-      clearInterval(projectsTimer);
-    };
-  }, [isVisible]);
-
   return (
     <section id="home" className="hero">
       <div className="hero-background">
@@ -109,17 +40,13 @@ const Hero = () => {
               </a>
             </div>
 
-            <div className="hero-stats" ref={statsRef}>
+            <div className="hero-stats">
               <div className="stat">
-                <span className="stat-number">
-                  {projectsCompleted}+
-                </span>
+                <span className="stat-number">50+</span>
                 <span className="stat-label">Projects Completed</span>
               </div>
               <div className="stat">
-                <span className="stat-number">
-                  {clientSatisfaction}%
-                </span>
+                <span className="stat-number">98%</span>
                 <span className="stat-label">Client Satisfaction</span>
               </div>
               <div className="stat">
