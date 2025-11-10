@@ -1,7 +1,74 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Hero.css';
 
 const Hero = () => {
+  const [projectsCompleted, setProjectsCompleted] = useState(0);
+  const [clientSatisfaction, setClientSatisfaction] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const statsRef = useRef(null);
+
+  const targetProjects = 50;
+  const targetSatisfaction = 98;
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (statsRef.current) {
+      observer.observe(statsRef.current);
+    }
+
+    return () => {
+      if (statsRef.current) {
+        observer.unobserve(statsRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    // Smooth animation using requestAnimationFrame
+    const animateValue = (start, end, duration, updateCallback, onComplete) => {
+      const startTime = performance.now();
+      
+      const updateValue = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smooth animation
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const currentValue = Math.floor(start + (end - start) * easeOutQuart);
+        
+        updateCallback(currentValue);
+        
+        if (progress < 1) {
+          requestAnimationFrame(updateValue);
+        } else {
+          updateCallback(end);
+          if (onComplete) onComplete();
+        }
+      };
+      
+      requestAnimationFrame(updateValue);
+    };
+
+    // Animate projects counter
+    animateValue(0, targetProjects, 2000, setProjectsCompleted);
+
+    // Animate satisfaction counter with delay
+    setTimeout(() => {
+      animateValue(0, targetSatisfaction, 1500, setClientSatisfaction);
+    }, 500);
+
+  }, [isVisible]);
+
   return (
     <section id="home" className="hero">
       <div className="hero-background">
@@ -40,13 +107,17 @@ const Hero = () => {
               </a>
             </div>
 
-            <div className="hero-stats">
+            <div className={`hero-stats ${isVisible ? 'animate-in' : ''}`} ref={statsRef}>
               <div className="stat">
-                <span className="stat-number">50+</span>
+                <span className={`stat-number ${projectsCompleted === targetProjects ? 'reached-target' : ''}`}>
+                  {projectsCompleted}+
+                </span>
                 <span className="stat-label">Projects Completed</span>
               </div>
               <div className="stat">
-                <span className="stat-number">98%</span>
+                <span className={`stat-number ${clientSatisfaction === targetSatisfaction ? 'reached-target' : ''}`}>
+                  {clientSatisfaction}%
+                </span>
                 <span className="stat-label">Client Satisfaction</span>
               </div>
               <div className="stat">
@@ -56,6 +127,7 @@ const Hero = () => {
             </div>
           </div>
 
+          {/* Rest of your hero visual content remains the same */}
           <div className="hero-visual">
             <div className="image-container">
               <img 
@@ -65,12 +137,10 @@ const Hero = () => {
               />
               <div className="image-glow"></div>
               
-              {/* Floating tech elements */}
               <div className="floating-tech tech-1">💻</div>
               <div className="floating-tech tech-2">📱</div>
               <div className="floating-tech tech-3">🎨</div>
               
-              {/* Status badge */}
               <div className="status-badge">
                 <div className="status-dot"></div>
                 <span>Available for Projects</span>
