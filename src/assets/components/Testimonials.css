@@ -550,3 +550,33 @@
     transition: none;
   }
 }
+
+/* See More Button */
+.testimonials-see-more {
+  text-align: center;
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.see-more-testimonials-btn {
+  background: linear-gradient(135deg, var(--gold) 0%, #ffed4a 100%);
+  color: #1f2937;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.see-more-testimonials-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+  color: #000000;
+}

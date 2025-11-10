@@ -11,6 +11,8 @@ import Footer from "./assets/components/Footer";
 import AllServicesPage from './assets/components/AllServicesPage';
 import ServiceDetailPage from './assets/components/ServiceDetailPage';
 import "./index.css";
+import TestimonialsPage from './assets/components/TestimonialsPage';
+
 
 
 function App() {
@@ -31,6 +33,8 @@ function App() {
           } />
           <Route path="/services" element={<AllServicesPage />} />
           <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
+      
+<Route path="/testimonials" element={<TestimonialsPage />} />
         </Routes>
         <Footer />
       </div>

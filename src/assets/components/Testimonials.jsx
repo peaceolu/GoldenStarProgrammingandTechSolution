@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Testimonials.css';
 
 const Testimonials = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [direction, setDirection] = useState('next');
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const navigate = useNavigate();
 
   const testimonials = [
     {
@@ -76,6 +78,10 @@ const Testimonials = () => {
   const goToTestimonial = (index) => {
     setDirection(index > currentTestimonial ? 'next' : 'prev');
     setCurrentTestimonial(index);
+  };
+
+  const handleSeeMore = () => {
+    navigate('/testimonials');
   };
 
   // Auto-play functionality
@@ -232,6 +238,16 @@ const Testimonials = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* See More Button */}
+        <div className="testimonials-see-more">
+          <button onClick={handleSeeMore} className="see-more-testimonials-btn">
+            <span>View All Testimonials</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
         </div>
       </div>
     </section>
