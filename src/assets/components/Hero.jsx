@@ -15,11 +15,13 @@ const Hero = () => {
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title">
-              Your Vision.{' '}
-              <span className="gold-gradient-text">
-                Our Code.
-              </span>{' '}
-              Limitless Possibilities.
+              <span className="line-1">Your Vision.{' '}</span>
+              <span className="line-2">
+                <span className="gold-gradient-text">
+                  Our Code.
+                </span>{' '}
+                Limitless Possibilities.
+              </span>
             </h1>
             
             <p className="hero-subtitle">
