@@ -188,19 +188,15 @@
 }
 
 .cta-button.secondary {
-  background: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  border: 2px solid rgba(255, 215, 0, 0.5);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  animation: slideUpFade 1s ease-out 1.7s forwards;
+  background: linear-gradient(135deg, #ffd700, #ffb347);
+  color: #1a1a1a;
+  box-shadow: 0 8px 32px rgba(255, 215, 0, 0.4);
+  animation: slideUpFade 1s ease-out 1.5s forwards;
 }
 
 .cta-button.secondary:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: #ffd700;
   transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
 }
 
 .hero-stats {
