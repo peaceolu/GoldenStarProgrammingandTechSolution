@@ -1,3 +1,4 @@
+// Updated Hero Component
 import React from 'react';
 import './Hero.css';
 
@@ -10,7 +11,7 @@ const Hero = () => {
         <div className="circle-3"></div>
       </div>
       
-      <div className="container">
+      <div className="hero-container">
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title">
