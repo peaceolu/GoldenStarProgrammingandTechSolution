@@ -1,3 +1,4 @@
+
 // Updated Hero Component
 import React from 'react';
 import './Hero.css';
